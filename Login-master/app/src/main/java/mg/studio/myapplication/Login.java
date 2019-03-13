@@ -119,7 +119,24 @@ public class Login extends AppCompatActivity {
 
             //Todo: need to check weather the user has Internet before attempting checking the data
             // Start fetching the data from the Internet
-            new OnlineCredentialValidation().execute(email,password);
+            //new OnlineCredentialValidation().execute(email,password);
+
+            if(session.isLoggedIn()){
+                if (progressDialog.isShowing()) progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(),
+                        "Right", Toast.LENGTH_LONG)
+                        .show();
+                Intent intent = new Intent(getApplication(), MainActivity.class);
+                //intent.putExtra("feedback", feedback);
+                startActivity(intent);
+            }
+            else
+            {
+                if (progressDialog.isShowing()) progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(),
+                        "Wrong", Toast.LENGTH_LONG)
+                        .show();
+            }
 
 
         } else {
